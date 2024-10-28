@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 
 interface InputDateProps {
   label: string;
@@ -29,11 +30,12 @@ const InputDate: React.FC<InputDateProps> = ({
           backgroundColor: "var(--color-light)",
         }}
       />
-      <img
+      <Image
         src="/icons/calend.svg"
-        alt="calendar"
+        alt="Calendar"
+        width={22}
+        height={22}
         className="absolute top-[48%] right-4 pointer-events-none"
-        style={{ width: '22px', height: '22px' }}
       />
     </div>
   );

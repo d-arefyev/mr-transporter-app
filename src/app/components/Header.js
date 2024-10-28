@@ -31,7 +31,7 @@ const Header = () => {
             <Link href="/account" className="pt-2 pb-2" style={{ whiteSpace: 'nowrap' }}>Mein Konto</Link>
           </nav>
 
-          <Button className="h-[40px]"
+          <Button className="h-[42px]"
             label="Anmelden"
             icon={
               <svg
@@ -48,7 +48,13 @@ const Header = () => {
           />
 
           <Link href="/cart" className="relative" >
-            <img src="/icons/cart.svg" alt="Cart" style={{ minWidth: '29px' }} />
+            <Image
+              src="/icons/cart.svg"
+              alt="Cart"
+              width={24}
+              height={24}
+              className="mr-4"
+            />
             {itemCount > 0 && (
               <span className="absolute -top-2 -right-2 bg-color-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {itemCount}
