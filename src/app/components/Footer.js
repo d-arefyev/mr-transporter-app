@@ -120,7 +120,6 @@ const Footer = () => {
                   iconPosition="right"
                   disabled={!isChecked}
                 />
-                {formErrors && <p className="text-red-500">{formErrors}</p>}
                 <div className="flex gap-6">
                   <Link href="https://web.whatsapp.com/" aria-label="WhatsApp" target="blank">
                     <svg width="30" height="31" viewBox="0 0 30 31" fill="none">
@@ -139,6 +138,7 @@ const Footer = () => {
                   </Link>
                 </div>
               </div>
+              {formErrors && <p className="text-red-500">{formErrors}</p>}
             </form>
             <CustomCheckbox
               label="Ja, ich möchte mich für den Newsletter anmelden."
