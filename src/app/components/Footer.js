@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
+import Image from "next/image";
 import Input from "./Input";
 import Button from "./Button";
 import CustomCheckbox from "./CustomCheckbox";
@@ -41,7 +42,7 @@ const Footer = () => {
       if (response.ok) {
         alert('Erfolgreich abonniert!'); // Successfully subscribed!
         setEmail('');
-        setIsChecked(false); 
+        setIsChecked(false);
       } else {
         setFormErrors("Fehler beim Abonnieren!"); // Error while subscribing!
       }
@@ -55,7 +56,13 @@ const Footer = () => {
     <footer className="bg-color-primary border-t-2 border-color-accent">
       <div className="container flex flex-col gap-10 pt-10 pb-4">
         <Link href="/" className="min-w-[340px] flex self-start">
-          <img src="/icons/logo-gray.svg" alt="MR.TRANSPORTER" />
+          <Image
+            src="/icons/logo-gray.svg"
+            alt="MR.TRANSPORTER"
+            width={340}
+            height={21}
+            className="mr-4"
+          />
         </Link>
 
         <div className="flex justify-between gap-12">
@@ -102,7 +109,7 @@ const Footer = () => {
                 value={email}
                 required
               />
-              
+
               <div className="flex gap-10 items-center">
                 <Button
                   label="Jetzt senden"
