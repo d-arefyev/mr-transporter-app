@@ -61,7 +61,6 @@ const Footer = () => {
             alt="MR.TRANSPORTER"
             width={340}
             height={21}
-            className="mr-4"
           />
         </Link>
 

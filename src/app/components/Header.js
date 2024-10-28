@@ -4,10 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import Button from "./Button";
 
-const handleClick = () => {
-  console.log("Button clicked!");
-};
-
 const Header = () => {
   const itemCount = 5;
 
@@ -51,12 +47,12 @@ const Header = () => {
             <Image
               src="/icons/cart.svg"
               alt="Cart"
-              width={24}
-              height={24}
-              className="mr-4"
+              width={26}
+              height={26}
+              className="mr-4 min-w-[26px]"
             />
             {itemCount > 0 && (
-              <span className="absolute -top-2 -right-2 bg-color-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              <span className="absolute -top-2 right-2 bg-color-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {itemCount}
               </span>
             )}
