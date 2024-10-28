@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import Input from "./components/Input";
 import InputDate from "./components/InputDate";
 import Button from "./components/Button";
@@ -123,7 +124,13 @@ export default function Home() {
         </form>
         <div className="flex flex-col gap-8 max-w-[420px]">
           <div className="flex items-start">
-            <img src="/icons/main-icon-1.svg" alt="Icon 1" className="mr-4" />
+            <Image
+              src="/icons/main-icon-1.svg"
+              alt="Icon 1"
+              width={38}
+              height={38}
+              className="mr-4"
+            />
             <div>
               <h3 className="text-[28px] lleading-tight mb-1">
                 Einfach und unkompliziert
@@ -136,7 +143,13 @@ export default function Home() {
           </div>
 
           <div className="flex items-start">
-            <img src="/icons/main-icon-2.svg" alt="Icon 2" className="mr-4" />
+            <Image
+              src="/icons/main-icon-2.svg"
+              alt="Icon 2"
+              width={38}
+              height={38}
+              className="mr-4"
+            />
             <div>
               <h3 className="text-[28px] leading-tight mb-1">
                 EXPRESS Autotransport
@@ -148,7 +161,13 @@ export default function Home() {
           </div>
 
           <div className="flex items-start">
-            <img src="/icons/main-icon-3.svg" alt="Icon 3" className="mr-4" />
+          <Image
+              src="/icons/main-icon-3.svg"
+              alt="Icon 3"
+              width={38}
+              height={38}
+              className="mr-4"
+            />
             <div>
               <h3 className="text-[28px] leading-tight">
                 Die Fahrzeuge sind über den gesamten Transportweg versichert
