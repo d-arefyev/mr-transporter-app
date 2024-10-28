@@ -1,101 +1,162 @@
-import Image from "next/image";
+"use client";
+
+import { useState } from "react";
+import Input from "./components/Input";
+import InputDate from "./components/InputDate";
+import Button from "./components/Button";
+import CustomRadioButton from "./components/CustomRadioButton";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  const [abholort, setAbholort] = useState("");
+  const [lieferort, setLieferort] = useState("");
+  const [wunschdatum, setWunschdatum] = useState("");
+  const [transportType, setTransportType] = useState("Abschleppauftrag");
+  const [formErrors, setFormErrors] = useState("");
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
+  const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setWunschdatum(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!abholort || !lieferort || !wunschdatum) {
+      setFormErrors("Bitte füllen Sie alle Felder aus!");
+      return;
+    }
+
+    setFormErrors("");
+
+    try {
+      const response = await fetch("/api/sendData", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          abholort,
+          lieferort,
+          wunschdatum,
+          transportType,
+        }),
+      });
+
+      if (response.ok) {
+        alert("Die Daten wurden erfolgreich gesendet!"); // The data was sent successfully!
+
+        setAbholort("");
+        setLieferort("");
+        setWunschdatum("");
+        setTransportType("Abschleppauftrag");
+      } else {
+        const errorData = await response.json();
+        setFormErrors(errorData.error || "Fehler beim Senden der Daten!"); // Error sending data!
+      }
+    } catch (error) {
+      console.error("Verbindungsfehler:", error); // Connection error:
+      setFormErrors("Verbindungsfehler zum Server!"); // Connection error to server!
+    }
+  };
+
+  return (
+    <div
+      className="w-screen h-[700px] bg-cover bg-center flex items-center"
+      style={{ backgroundImage: "url('/main-bg.jpg')" }}
+    >
+      <div className="container flex gap-10 items-center">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-6 w-[418px] transparent rounded-lg shadow-lg px-5 py-8"
+        >
+          <h3>Transportart auswählen</h3>
+
+          <div className="flex items-center justify-between">
+            <CustomRadioButton
+              label="Abschleppauftrag"
+              checked={transportType === "Abschleppauftrag"}
+              onChange={() => setTransportType("Abschleppauftrag")}
+              checkedColor="bg-color-accent"
+              uncheckedBorderColor="border-color-gray"
             />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+            <CustomRadioButton
+              label="EXPRESS Autotransport"
+              checked={transportType === "EXPRESS Autotransport"}
+              onChange={() => setTransportType("EXPRESS Autotransport")}
+              checkedColor="bg-color-accent"
+              uncheckedBorderColor="border-color-gray"
+            />
+          </div>
+
+          <div className="flex flex-col gap-2">
+            <Input
+              type="text"
+              label="Abholort"
+              placeholder="z.B. Hannover"
+              onChange={(e) => setAbholort(e.target.value)}
+              value={abholort}
+              required
+            />
+            <Input
+              type="text"
+              label="Lieferort"
+              placeholder="z.B. Herford"
+              onChange={(e) => setLieferort(e.target.value)}
+              value={lieferort}
+              required
+            />
+            <InputDate
+              label="Wunschdatum"
+              value={wunschdatum}
+              onChange={handleDateChange}
+              required
+              className="text-color-dark"
+            />
+          </div>
+
+          <Button
+            type="submit"
+            label="Weiter"
+            iconPosition="right"
+            className="w-full"
+          />
+          {formErrors && <p className="text-red-500">{formErrors}</p>}
+        </form>
+        <div className="flex flex-col gap-8 max-w-[420px]">
+          <div className="flex items-start">
+            <img src="/icons/main-icon-1.svg" alt="Icon 1" className="mr-4" />
+            <div>
+              <h3 className="text-[28px] lleading-tight mb-1">
+                Einfach und unkompliziert
+              </h3>
+              <p className="text-xl">
+                Autotransporte Online-Buchen mit persönlicher Beratung und
+                Betreuung
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <img src="/icons/main-icon-2.svg" alt="Icon 2" className="mr-4" />
+            <div>
+              <h3 className="text-[28px] leading-tight mb-1">
+                EXPRESS Autotransport
+              </h3>
+              <p className="text-xl">
+                Schnelle Lieferung innerhalb von 1 bis 2 Werktagen
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-start">
+            <img src="/icons/main-icon-3.svg" alt="Icon 3" className="mr-4" />
+            <div>
+              <h3 className="text-[28px] leading-tight">
+                Die Fahrzeuge sind über den gesamten Transportweg versichert
+              </h3>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
