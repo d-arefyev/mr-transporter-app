@@ -1,22 +1,21 @@
+// src/lib/mongodb.ts
 import { MongoClient } from 'mongodb';
 
-const uri = process.env.MONGO_DB_URI as string;
-let client;
-let clientPromise: Promise<MongoClient>;
+const uri = process.env.MONGO_DB_URI; // Убедитесь, что это строка
+let client: MongoClient | null = null; // Инициализация клиента как null
 
 if (!uri) {
-  throw new Error('Пожалуйста, добавьте вашу Mongo URI в .env.local');
+  throw new Error('Please add your Mongo URI to .env');
 }
 
-if (process.env.NODE_ENV === 'development') {
-  if (!global._mongoClientPromise) {
+// Функция для получения клиента MongoDB
+const getClient = async () => {
+  if (!client) {
     client = new MongoClient(uri);
-    global._mongoClientPromise = client.connect();
+    await client.connect();
   }
-  clientPromise = global._mongoClientPromise;
-} else {
-  client = new MongoClient(uri);
-  clientPromise = client.connect();
-}
+  return client;
+};
 
-export default clientPromise;
+// Экспортируем функцию для получения клиента
+export default getClient;

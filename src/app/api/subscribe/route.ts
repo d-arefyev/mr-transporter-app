@@ -1,10 +1,10 @@
 import { NextResponse } from 'next/server';
-import clientPromise from '../../../lib/mongodb';
+import getClient from '../../../lib/mongodb';
 
 export async function POST(request: Request) {
   const { email } = await request.json();
 
-  const client = await clientPromise;
+  const client = await getClient();
   const db = client.db('mr-transporter');
   const collection = db.collection('subscribers');
 
