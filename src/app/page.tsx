@@ -61,9 +61,10 @@ export default function Home() {
 
   return (
     <div
-      className="w-screen h-[700px] bg-cover bg-center flex items-center"
+      className="w-full h-[700px] bg-cover bg-center flex items-center"
       style={{ backgroundImage: "url('/main-bg.jpg')" }}
     >
+
       <div className="container flex gap-10 items-center">
         <form
           onSubmit={handleSubmit}
@@ -161,7 +162,7 @@ export default function Home() {
           </div>
 
           <div className="flex items-start">
-          <Image
+            <Image
               src="/icons/main-icon-3.svg"
               alt="Icon 3"
               width={38}

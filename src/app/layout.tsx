@@ -1,6 +1,7 @@
 import "./globals.css";
 import Header from './components/Header';
 import Footer from './components/Footer';
+import SOSButton from "./components/SOSButton";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -17,11 +18,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <link rel="icon" href="./icons/favicon.svg" />
       </head>
-      <body >
+      <body>
         <Header />
         <div>{children}</div>
         <Footer />
       </body>
+      <SOSButton />
     </html>
   );
 }

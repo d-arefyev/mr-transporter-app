@@ -27,8 +27,9 @@ const Header = () => {
             <Link href="/account" className="pt-2 pb-2" style={{ whiteSpace: 'nowrap' }}>Mein Konto</Link>
           </nav>
 
-          <Button className="h-[40px]"
+          <Button
             label="Anmelden"
+            height="42"
             icon={
               <svg
                 width="20"
