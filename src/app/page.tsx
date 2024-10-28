@@ -61,7 +61,7 @@ export default function Home() {
 
   return (
     <div
-      className="w-full h-[700px] bg-cover bg-center flex items-center"
+      className="w-full h-[720px] bg-cover bg-center flex items-center"
       style={{ backgroundImage: "url('/main-bg.jpg')" }}
     >
 
