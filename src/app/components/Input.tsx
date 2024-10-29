@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`border border-color-gray rounded px-4 py-2.5 placeholder-color-light-gray ${className}`}
+        className={`h-[46px] border border-color-gray rounded px-4 py-2.5 placeholder-color-light-gray ${className}`}
         required={required}
       />
     </div>
