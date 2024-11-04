@@ -68,7 +68,7 @@ export default function Home() {
       <div className="container flex gap-10 items-center">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-6 w-[418px] transparent rounded-lg shadow-lg px-5 py-8"
+          className="flex flex-col gap-6 w-[418px] transparent rounded-lg shadow-lg p-[22px]"
         >
           <h3>Transportart auswählen</h3>
 

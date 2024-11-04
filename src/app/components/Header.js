@@ -56,7 +56,7 @@ const Header = () => {
               className="min-w-[26px]"
             />
             {itemCount > 0 && (
-              <span className="absolute -top-2 right-2 bg-color-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
+              <span className="absolute -top-2 -right-2 bg-color-accent text-white rounded-full w-5 h-5 flex items-center justify-center text-xs">
                 {itemCount}
               </span>
             )}
