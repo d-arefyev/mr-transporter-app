@@ -8,9 +8,9 @@ const Header = () => {
   const itemCount = 5;
 
   return (
-    <header className="bg-color-primary border-b-2 border-color-accent">
-      <div className="container flex items-center justify-between pt-4 pb-4">
-        <Link href="/" className="mr-4">
+    <header className="bg-color-primary border-b-[2px] border-color-accent">
+      <div className="container flex items-center justify-between py-[16px]">
+        <Link href="/" className="mr-[16px]">
           <Image
             src="/icons/logo.svg"
             alt="MR.TRANSPORTER"
@@ -20,17 +20,17 @@ const Header = () => {
           />
         </Link>
 
-        <div className="flex items-center gap-6">
-          <nav className="flex gap-4">
-            <Link href="/about" className="pt-2 pb-2" style={{ whiteSpace: 'nowrap' }}>Über uns</Link>
-            <Link href="/pickup" className="pt-2 pb-2" style={{ whiteSpace: 'nowrap' }}>Fahrzeug abholen</Link>
-            <Link href="/contact" className="pt-2 pb-2">Kontakt</Link>
-            <Link href="/account" className="pt-2 pb-2" style={{ whiteSpace: 'nowrap' }}>Mein Konto</Link>
+        <div className="flex items-center gap-[24px]">
+          <nav className="flex gap-[24px]">
+            <Link href="/about" className="py-[8px]" style={{ whiteSpace: 'nowrap' }}>Über uns</Link>
+            <Link href="/pickup" className="py-[8px]" style={{ whiteSpace: 'nowrap' }}>Fahrzeug abholen</Link>
+            <Link href="/contact" className="py-[8px]">Kontakt</Link>
+            <Link href="/account" className="py-[8px]" style={{ whiteSpace: 'nowrap' }}>Mein Konto</Link>
           </nav>
 
           <Button
             label={
-              <span className="hidden lg:inline">Anmelden</span>
+              <span className="hidden lg:inline ml-[8px]">Anmelden</span>
             }
             height="42"
             

@@ -2,10 +2,10 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import Input from "./components/Input";
-import InputDate from "./components/InputDate";
-import Button from "./components/Button";
-import CustomRadioButton from "./components/CustomRadioButton";
+import Input from "../components/Input";
+import InputDate from "../components/InputDate";
+import Button from "../components/Button";
+import CustomRadioButton from "../components/CustomRadioButton";
 
 export default function Home() {
   const [abholort, setAbholort] = useState("");
@@ -68,7 +68,7 @@ export default function Home() {
       <div className="container flex gap-10 items-center">
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col gap-6 w-[418px] transparent rounded-lg shadow-lg p-[22px]"
+          className="flex flex-col gap-[22px] w-[418px] transparent rounded-lg shadow-lg p-[22px]"
         >
           <h3>Transportart auswählen</h3>
 
@@ -89,7 +89,7 @@ export default function Home() {
             />
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-[10px]">
             <Input
               type="text"
               label="Abholort"
@@ -123,7 +123,7 @@ export default function Home() {
           />
           {formErrors && <p className="text-red-500">{formErrors}</p>}
         </form>
-        <div className="flex flex-col gap-8 max-w-[420px]">
+        <div className="flex flex-col gap-[32px] max-w-[420px]">
           <div className="flex items-start">
             <Image
               src="/icons/main-icon-1.svg"
@@ -133,7 +133,7 @@ export default function Home() {
               className="mr-4"
             />
             <div>
-              <h3 className="text-[28px] lleading-tight mb-1">
+              <h3 className="text-[28px] lleading-tight text-color-gray mb-1">
                 Einfach und unkompliziert
               </h3>
               <p className="text-xl">
@@ -152,7 +152,7 @@ export default function Home() {
               className="mr-4"
             />
             <div>
-              <h3 className="text-[28px] leading-tight mb-1">
+              <h3 className="text-[28px] leading-tight text-color-gray mb-1">
                 EXPRESS Autotransport
               </h3>
               <p className="text-xl">
@@ -170,7 +170,7 @@ export default function Home() {
               className="mr-4"
             />
             <div>
-              <h3 className="text-[28px] leading-tight">
+              <h3 className="text-[28px] leading-tight text-color-gray ">
                 Die Fahrzeuge sind über den gesamten Transportweg versichert
               </h3>
             </div>

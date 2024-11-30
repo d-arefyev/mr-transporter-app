@@ -1,7 +1,7 @@
 import "./globals.css";
-import Header from './components/Header';
-import Footer from './components/Footer';
-import SOSButton from "./components/SOSButton";
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import SOSButton from "../components/SOSButton";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -14,16 +14,16 @@ export const metadata = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="./icons/favicon.svg" />
+        <link rel="icon" href="/icons/favicon.svg" />
       </head>
-      <body>
+      <body suppressHydrationWarning>
         <Header />
         <div>{children}</div>
         <Footer />
-      </body>
       <SOSButton />
+      </body>
     </html>
   );
 }

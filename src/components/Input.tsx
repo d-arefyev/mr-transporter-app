@@ -21,7 +21,7 @@ const Input: React.FC<InputProps> = ({
 }) => {
   return (
     <div className="flex flex-col">
-      <label className="text-sm text-color-gray">
+      <label className="text-sm text-color-dark">
         {label}
       </label>
       <input
@@ -29,7 +29,7 @@ const Input: React.FC<InputProps> = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        className={`h-[46px] border border-color-gray rounded px-4 py-2.5 placeholder-color-light-gray ${className}`}
+        className={`h-[44px] border border-color-gray rounded px-4 py-2.5 placeholder-color-light-gray ${className}`}
         required={required}
       />
     </div>

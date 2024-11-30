@@ -39,10 +39,16 @@ html {
   box-sizing: border-box;
 }
 
-h1, h2, h3, h4 {
+h1, h2 {
   line-height: 1;
   font-weight: 600;
   color: var(--color-gray);
+}
+
+h3, h4 {
+  line-height: 1;
+  font-weight: 600;
+  color: var(--color-accent);
 }
 
 h1 {
@@ -246,3 +252,6 @@ a {
  svg * {
    transition-property: fill, stroke;
  }
+
+
+ 
